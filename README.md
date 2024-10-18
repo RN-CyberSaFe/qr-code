@@ -1,1 +1,1 @@
-# qr-code
+<h6> THIS IS QR SCANNER CODE </h6>
