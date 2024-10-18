@@ -1,5 +1,5 @@
 <p align="center">
-<h4> THIS IS QR SCANNER CODE  
+<h4> THIS IS QR CODE GENERATOR 
 enjoy the code :)
 </h4>
 </p>
