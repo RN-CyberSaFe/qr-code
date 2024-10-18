@@ -6,6 +6,6 @@
 * Python3
 * 
 ## step 1 (install this before you start):
-\\
+\\\
 apt update && upgrade
 pip install qrcode Pillow
