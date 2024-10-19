@@ -41,13 +41,16 @@ def main():
     root.title("QR Code Generator")
     root.geometry("450x550")
 
-    # Load and set the background image (replace with a relative path if necessary)
-    bg_image = Image.open("D:/qr generator/pictureofnepal.jfif")  # Ensure the image file is in the correct path
-    bg_image = bg_image.resize((450, 550), Image.LANCZOS)  # Use LANCZOS for better quality resizing
-    bg_image_tk = ImageTk.PhotoImage(bg_image)
+    # Use relative path for the background image
+    try:
+        bg_image = Image.open("pictureofnepal.jfif")  # Image should be in the same directory as this script
+        bg_image = bg_image.resize((450, 550), Image.LANCZOS)  # Use LANCZOS for better quality resizing
+        bg_image_tk = ImageTk.PhotoImage(bg_image)
 
-    bg_label = tk.Label(root, image=bg_image_tk)
-    bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+        bg_label = tk.Label(root, image=bg_image_tk)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+    except FileNotFoundError:
+        messagebox.showerror("Error", "Background image not found. Make sure 'pictureofnepal.jfif' is in the same directory.")
 
     # Add content over the image
     url_label = tk.Label(root, text="Enter URL:", font=("Helvetica", 14), fg="white", bg="#000000", padx=10, pady=5)
