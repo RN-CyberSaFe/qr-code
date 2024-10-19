@@ -1,10 +1,17 @@
-<p align="center">
-<h4> THIS IS QR CODE GENERATOR 
-enjoy the code :)
-</h4>
-</p>
+# QR Code Generator
+-by Aryan Joshi 
+This project is a simple QR code generator that uses Python and Tkinter.
 
-# step 1 (install this before you start):
-```
-apt update && upgrade
-pip install qrcode Pillow
+## Requirements
+- Python 3.x
+- Pillow
+- qrcode
+
+## Usage
+1. Ensure that `pictureofnepal.jfif` is in the same directory as the Python script.
+2. Run `qr_code_generator.py`.
+
+## Instructions
+To run the script, use the command:
+```bash
+python qr_code_generator.py
