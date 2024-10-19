@@ -26,7 +26,7 @@ def main():
     root.geometry("300x200")
     root.configure(bg="#f0f0f0")
 
-    url_label = tk.Label(root, text="Enter App URL:", bg="#f0f0f0")
+    url_label = tk.Label(root, text="Enter URL:", bg="#f0f0f0")
     url_label.pack(pady=10)
 
     global url_entry
