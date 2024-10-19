@@ -1,5 +1,5 @@
 # QR Code Generator
--by Aryan Joshi 
+-by Aryan Joshi <br>  
 This project is a simple QR code generator that uses Python and Tkinter.
 
 ## Requirements
