@@ -3,6 +3,7 @@ from tkinter import messagebox
 from tkinter import ttk
 import qrcode
 from PIL import ImageTk, Image, ImageFilter
+import os
 
 # Create the motion blur effect for QR code
 def apply_motion_blur(image):
@@ -15,17 +16,30 @@ def generate_qr_code():
         return
 
     try:
-        qr = qrcode.QRCode(version=1, box_size=10, border=5)
+        qr = qrcode.QRCode(version=1, box_size=10, border=5)  # Adjusted box_size for balance
         qr.add_data(url)
         qr.make(fit=True)
+        
+        # Create the image and convert to RGB
         img = qr.make_image(fill_color="black", back_color="white").convert("RGB")
 
-        # Apply motion blur to the QR code
+        # Resize for better visibility
+        img = img.resize((300, 300), Image.LANCZOS)
+
+        # Save the QR code image directly on the Desktop
+        desktop_path = os.path.join(os.path.expanduser("~"), "Desktop", "generated_qr_code.png")
+        img.save(desktop_path, "PNG", quality=95)  # Save as PNG file with high quality
+
+        # Optionally apply motion blur
         blurred_img = apply_motion_blur(img)
         tk_img = ImageTk.PhotoImage(blurred_img)
 
         qr_label.config(image=tk_img)
         qr_label.image = tk_img
+
+        # Update message below QR code
+        message_label.config(text="It is blurred, so we have saved the QR code on your Desktop.")
+        
     except Exception as e:
         messagebox.showerror("Error", f"An error occurred: {str(e)}")
 
@@ -38,13 +52,13 @@ def on_leave(e):
 
 def main():
     root = tk.Tk()
-    root.title("QR Code Generator")
+    root.title("QR CODE GENERATOR _ARYAN-JOSHI")
     root.geometry("450x550")
 
-    # Use relative path for the background image
+    # Load and set the background image
     try:
         bg_image = Image.open("pictureofnepal.jfif")  # Image should be in the same directory as this script
-        bg_image = bg_image.resize((450, 550), Image.LANCZOS)  # Use LANCZOS for better quality resizing
+        bg_image = bg_image.resize((450, 550), Image.LANCZOS)  # Resize to match window size
         bg_image_tk = ImageTk.PhotoImage(bg_image)
 
         bg_label = tk.Label(root, image=bg_image_tk)
@@ -75,7 +89,12 @@ def main():
     # Placeholder for QR code
     global qr_label
     qr_label = tk.Label(root, bg="#ff8c00")  # Adjusted for better visibility
-    qr_label.place(relx=0.5, y=300, anchor="center")  # Center the QR code
+    qr_label.place(relx=0.5, y=400, anchor="center")  # Center the QR code
+
+    # Message label directly below the QR code (adjusted position)
+    global message_label
+    message_label = tk.Label(root, text="", font=("Helvetica", 12), fg="white", bg="#111111")
+    message_label.place(relx=0.5, y=220, anchor="center")  # Center the message slightly higher
 
     root.mainloop()
 
